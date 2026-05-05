@@ -1,5 +1,16 @@
+server:
+  port: 8081 # 임시값으로, config 설정 내용으로 덮어쓰임
+
 spring:
+  profiles:
+    active: local
   application:
     name: servicea
-server:
-  port: 8081
+  config:
+    import: "configserver:http://localhost:18080"
+  cloud:
+    config:
+      discovery:
+        enabled: false
+
+message: "default message"

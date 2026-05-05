@@ -1,0 +1,4 @@
+server:
+  port: 19081
+
+message: "Hello I'm local"
