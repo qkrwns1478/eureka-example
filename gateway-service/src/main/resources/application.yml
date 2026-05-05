@@ -1,0 +1,29 @@
+server:
+  port: 19091
+
+spring:
+  main:
+    web-application-type: reactive
+  application:
+    name: gateway-service
+  cloud:
+    gateway:
+      server:
+        webflux:
+          routes:
+            - id: auth-service
+              uri: lb://auth-service
+              predicates:
+                - Path=/auth/**
+            - id: servicea
+              uri: lb://servicea
+              predicates:
+                - Path=/a/**
+            - id: serviceb
+              uri: lb://serviceb
+              predicates:
+                - Path=/b/**
+
+          discovery:
+            locator:
+              enabled: true
